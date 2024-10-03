@@ -1,56 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
-public class enemyPatrol : MonoBehaviour
+public class Patrol : MonoBehaviour
 {
-    public GameObject pointA;
-    public GameObject pointB;
-    private Rigidbody2D rb;
-    private Animator anim;
-    private Transform currentPoint;
-    public float speed;
+    public Transform[] waypoints; 
+    private int _currentWaypointIndex = 0;
+
+    [SerializeField]
+    private float _speed = 3f; 
+
+    private float _waitTime = 1f;
+    private float _waitCounter = 0f;
+    private bool _waiting = false;
 
     void Start()
     {
-      rb = GetComponent<Rigidbody2D>();
-      anim = GetComponent<Animator>();
-      currentPoint = pointB.transform;
-      anim.SetBool("isRunning", true);
+        if (waypoints.Length == 0)
+        {
+            Debug.LogError("Aucun waypoint assigné ! Assignez au moins deux points de passage.");
+        }
     }
 
     void Update()
     {
-        Vector2 point = currentPoint.position - transform.position;
-        if(currentPoint == pointB.transform){
-            rb.velocity = new Vector2(speed, 0);
-        }
-        else
+        if (_waiting)
         {
-            rb.velocity = new Vector2(-speed, 0);
+            _waitCounter += Time.deltaTime;
+            if (_waitCounter < _waitTime)
+                return;
+
+            _waiting = false;
         }
 
-        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
+        if (waypoints.Length > 0)
         {
-            currentPoint = pointA.transform;
-        }
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
-        {
-            currentPoint = pointB.transform;
-        }
-    }
+            Transform wp = waypoints[_currentWaypointIndex];
 
-    private void flip()
-    {
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
-    }
+        
+            if (Vector3.Distance(transform.position, wp.position) < 0.1f)  
+            {
+                _waitCounter = 0f;
+                _waiting = true;
 
-    private void OnDrawGizmos(){
-        Gizmos.DrawWireSphere(pointA.transform.position, 0.5f);
-        Gizmos.DrawWireSphere(pointB.transform.position, 0.5f);
-        Gizmos.DrawLine(pointA.transform.position, pointB.transform.position);
+                
+                _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Length;
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, wp.position, _speed * Time.deltaTime);
+            }
+        }
     }
 }
