@@ -8,7 +8,6 @@ TagManager:
   - CinemachineTarget
   - ScreenCamera
   - cockpit_capitalLaser
-  - isGrounded
   layers:
   - Default
   - TransparentFX
