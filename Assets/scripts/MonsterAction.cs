@@ -37,13 +37,13 @@ public class Patrol : MonoBehaviour
         {
             Transform wp = waypoints[_currentWaypointIndex];
 
-        
-            if (Vector3.Distance(transform.position, wp.position) < 0.1f)  
+
+            if (Vector3.Distance(transform.position, wp.position) < 0.1f)
             {
                 _waitCounter = 0f;
                 _waiting = true;
 
-                
+
                 _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Length;
             }
             else
