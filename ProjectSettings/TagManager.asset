@@ -9,6 +9,7 @@ TagManager:
   - ScreenCamera
   - cockpit_capitalLaser
   - isGrounded
+  - Teleport
   layers:
   - Default
   - TransparentFX

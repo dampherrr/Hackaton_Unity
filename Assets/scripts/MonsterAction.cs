@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Patrol : MonoBehaviour
 {
-    public Transform[] waypoints; 
+    public Transform[] waypoints;
     private int _currentWaypointIndex = 0;
 
     [SerializeField]
-    private float _speed = 3f; 
+    private float _speed = 3f;
 
     private float _waitTime = 1f;
     private float _waitCounter = 0f;
