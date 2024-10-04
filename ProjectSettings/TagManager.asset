@@ -10,6 +10,8 @@ TagManager:
   - cockpit_capitalLaser
   - isGrounded
   - Teleport
+  - key1
+  - door1
   layers:
   - Default
   - TransparentFX
