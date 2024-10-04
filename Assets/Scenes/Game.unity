@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2293baaa0ec48741ba188f0400ad35d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key1: {fileID: 0}
-  door1: {fileID: 0}
+  key1: {fileID: 76131013}
+  door1: {fileID: 1969329316}
   triggerX: -174.5165
 --- !u!65 &76131018
 BoxCollider:
@@ -4008,6 +4008,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1292061142}
+  - {fileID: 21814589}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2119846608
@@ -4076,3 +4077,7 @@ SceneRoots:
   - {fileID: 988698380}
   - {fileID: 2096939873}
   - {fileID: 1515097556}
+  - {fileID: 590692933}
+  - {fileID: 1622391042}
+  - {fileID: 1645224674}
+  - {fileID: 1761949334}
